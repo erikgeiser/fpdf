@@ -1,22 +1,22 @@
 {
-    "name": "fpdf",
-    "description": "Enter your project description",
-    "author": {
-        "name": "Erik Geiser",
-        "email": "erik.geiser@posteo.net"
-    },
-    "version": "0.1.0",
-    "binaryname": "fpdf",
-    "frontend": {
-        "dir": "frontend",
-        "install": "npm install",
-        "build": "npm run build",
-        "bridge": "src",
-        "serve": "npm run serve"
-    },
-    "WailsVersion": "",
-    "CrossCompile": false,
-    "Platform": "",
-    "Architecture": "",
-    "LdFlags": ""
+  "name": "fpdf",
+  "description": "Effing PDFs. Merge and cut PDFs.",
+  "author": {
+    "name": "Erik Geiser",
+    "email": "erik.geiser@posteo.net"
+  },
+  "version": "0.1.0",
+  "binaryname": "fpdf",
+  "frontend": {
+    "dir": "frontend",
+    "install": "npm install",
+    "build": "npm run build",
+    "bridge": "src",
+    "serve": "npm run serve"
+  },
+  "WailsVersion": "",
+  "CrossCompile": false,
+  "Platform": "",
+  "Architecture": "",
+  "LdFlags": ""
 }
