@@ -1,2 +1,5 @@
 node_modules
 build
+_frontend
+/frontend/public/build
+.vscode
