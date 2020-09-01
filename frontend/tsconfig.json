@@ -3,4 +3,6 @@
 
   "include": ["src/**/*"],
   "exclude": ["node_modules/*", "__sapper__/*", "public/*"],
+  "types": ["node", "pdfjs-dist"],
+  "typeRoots": ["node_modules/@types"]
 }

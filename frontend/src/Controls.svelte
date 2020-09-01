@@ -1,4 +1,6 @@
 <script lang="ts">
+  export let pdfFiles: File[] = [];
+
   let fileNames: string[] = [];
 
   function onDrop(e: DragEvent) {
@@ -6,7 +8,8 @@
 
     for (var i = 0; i < e.dataTransfer.files.length; i++) {
       let file = e.dataTransfer.files[i];
-      fileNames = [...fileNames, `${file.name} (${file.type})`];
+      fileNames = [...fileNames, file.name];
+      pdfFiles = [...pdfFiles, file];
     }
 
     return false;
@@ -23,8 +26,6 @@
     e.preventDefault();
     return false;
   }
-
-  $: foo = fileNames;
 </script>
 
 <style>
