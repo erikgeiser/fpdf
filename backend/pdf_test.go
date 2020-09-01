@@ -18,19 +18,19 @@ func mustRead(fileName string) []byte {
 	return content
 }
 
-func TestMergePDFsParallel(t *testing.T) {
+func TestMergePDFs(t *testing.T) {
 	var mergeElements = MergeElements{
 		{Name: "a.pdf", Data: mustRead("testdata/a.pdf"),
 			Pages: []string{"-2", "5"}},
 		{Name: "b2.pdf", Data: mustRead("testdata/b.pdf"),
 			Pages: []string{"1", "4"}},
-		{Name: "a.pdf", Data: mustRead("testdata/a.pdf"),
+		{Name: "a.pdf", Data: mustRead("testdata/x.pdf"),
 			Pages: []string{"4-8"}},
 	}
 
 	expected := []string{"a1", "a2", "a5", "b1", "b4", "a4", "a5", "a6", "a7", "a8"}
 
-	merged, err := MergePDFs(mergeElements)
+	merged, err := mergePDFs(mergeElements)
 	if err != nil {
 		t.Fatalf("merging PDFs: %v", err)
 	}

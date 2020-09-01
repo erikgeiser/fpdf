@@ -2,14 +2,11 @@ package main
 
 import (
 	"fmt"
+	"fpdf/backend"
 
 	"github.com/leaanthony/mewn"
 	"github.com/wailsapp/wails"
 )
-
-func basic() string {
-	return "Hello World!"
-}
 
 func main() {
 	html := mewn.String("./frontend/public/index.html")
@@ -27,7 +24,7 @@ func main() {
 		DisableInspector: true,
 	})
 
-	app.Bind(basic)
+	app.Bind(backend.MergePDFs)
 
 	err := app.Run()
 	if err != nil {

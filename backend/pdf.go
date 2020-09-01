@@ -18,7 +18,7 @@ type PDFSelection struct {
 	Pages []string
 }
 
-func MergePDFs(elements MergeElements) ([]byte, error) {
+func mergePDFs(elements MergeElements) ([]byte, error) {
 	errGroup, _ := errgroup.WithContext(context.Background())
 
 	parts := make([]io.ReadSeeker, len(elements))
@@ -27,6 +27,10 @@ func MergePDFs(elements MergeElements) ([]byte, error) {
 		func(i int, el *PDFSelection) {
 			errGroup.Go(func() error {
 				part := bytes.Buffer{}
+
+				if len(el.Data) == 0 {
+					return fmt.Errorf("empty data for pdf %s", el.Name)
+				}
 
 				err := pdfcpuAPI.Collect(bytes.NewReader(el.Data), &part, el.Pages, nil)
 				if err != nil {
