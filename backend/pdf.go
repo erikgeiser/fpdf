@@ -19,29 +19,31 @@ type PDFSelection struct {
 }
 
 func mergePDFs(elements MergeElements) ([]byte, error) {
+	if len(elements) == 0 {
+		return nil, fmt.Errorf("empty merge list")
+	}
+
 	errGroup, _ := errgroup.WithContext(context.Background())
 
 	parts := make([]io.ReadSeeker, len(elements))
 
 	for i, el := range elements {
-		func(i int, el *PDFSelection) {
-			errGroup.Go(func() error {
-				part := bytes.Buffer{}
+		errGroup.Go(func() error {
+			part := bytes.Buffer{}
 
-				if len(el.Data) == 0 {
-					return fmt.Errorf("empty data for pdf %s", el.Name)
-				}
+			if len(el.Data) == 0 {
+				return fmt.Errorf("empty data for pdf %s", el.Name)
+			}
 
-				err := pdfcpuAPI.Collect(bytes.NewReader(el.Data), &part, el.Pages, nil)
-				if err != nil {
-					return fmt.Errorf("collecting pages from %s: %w", el.Name, err)
-				}
+			err := pdfcpuAPI.Collect(bytes.NewReader(el.Data), &part, el.Pages, nil)
+			if err != nil {
+				return fmt.Errorf("collecting pages from %s: %w", el.Name, err)
+			}
 
-				parts[i] = bytes.NewReader(part.Bytes())
+			parts[i] = bytes.NewReader(part.Bytes())
 
-				return nil
-			})
-		}(i, el)
+			return nil
+		})
 	}
 
 	err := errGroup.Wait()
