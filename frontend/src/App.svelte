@@ -55,17 +55,32 @@
   }
 
   .controls {
-    background-color: #ff9e2c;
     position: absolute;
     left: 0px;
     width: 50%;
+    height:100%;
+    background: #3c476a; /* Old browsers */
+    background: -moz-linear-gradient(top,  #3c476a 0%, #252e48 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #3c476a 0%,#252e48 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #3c476a 0%,#252e48 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3c476a', endColorstr='#252e48',GradientType=0 ); /* IE6-9 */
   }
 
   .preview {
-    background-color: #b6701e;
+    text-align: center;
     position: absolute;
     right: 0px;
     width: 50%;
+    overflow:auto;
+    background: #252e48; /* Old browsers */
+    background: -moz-linear-gradient(top,  #252e48 0%, #3c476a 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #252e48 0%,#3c476a 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #252e48 0%,#3c476a 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#252e48', endColorstr='#3c476a',GradientType=0 ); /* IE6-9 */
+  }
+
+  #mergeBtn {
+    z-index: 9999;
   }
 </style>
 
@@ -73,13 +88,15 @@
   <section class="container">
     <div class="controls">
       <Controls bind:pdfFiles />
-      <button
-        on:click={async () => {
-          await merge();
-        }}>
-        merge
-      </button>
     </div>
+
+    <button id="mergeBtn"
+      on:click={async () => {
+        await merge();
+      }}>
+      merge
+    </button>
+
     <div class="preview">
       <Preview pdfData="${mergedPDF}" />
     </div>
