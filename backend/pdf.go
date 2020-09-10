@@ -10,8 +10,10 @@ import (
 	"golang.org/x/sync/errgroup"
 )
 
+// MergeElements holts PDFSelections for merging
 type MergeElements []*PDFSelection
 
+// PDFSelection represents a page selection from a PDF file
 type PDFSelection struct {
 	Name  string
 	Data  []byte
@@ -28,6 +30,7 @@ func mergePDFs(elements MergeElements) ([]byte, error) {
 	parts := make([]io.ReadSeeker, len(elements))
 
 	for i, el := range elements {
+		i, el := i, el
 		errGroup.Go(func() error {
 			part := bytes.Buffer{}
 

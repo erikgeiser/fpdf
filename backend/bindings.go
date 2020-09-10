@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// MergePDFs merges selected pages from multiple PDFs
 func MergePDFs(data map[string]interface{}) (string, error) {
 	pdfsValue, ok := data["mergeElements"]
 	if !ok {

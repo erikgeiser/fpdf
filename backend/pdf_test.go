@@ -24,7 +24,7 @@ func TestMergePDFs(t *testing.T) {
 			Pages: []string{"-2", "5"}},
 		{Name: "b2.pdf", Data: mustRead("testdata/b.pdf"),
 			Pages: []string{"1", "4"}},
-		{Name: "a.pdf", Data: mustRead("testdata/x.pdf"),
+		{Name: "a.pdf", Data: mustRead("testdata/a.pdf"),
 			Pages: []string{"4-8"}},
 	}
 
