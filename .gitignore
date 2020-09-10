@@ -3,3 +3,8 @@ build
 _frontend
 /frontend/public/build
 .vscode
+appicon.png
+fpdf.ico
+fpdf.rc
+fpdf-res.syso
+fpdf.exe.manifest

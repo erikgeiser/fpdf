@@ -1,16 +1,20 @@
-<script lang="ts">
-  import pdflib from 'pdfjs-dist';
-  import pdfjsWorker from 'pdfjs-dist/build/pdf.worker.entry';
+<script>
+  import pdflib from 'pdfjs-dist/es5/build/pdf';
+  import pdfjsWorker from 'pdfjs-dist/es5/build/pdf.worker.entry';
 
-  export let pdfData: string;
+  export let pdfData;
 
-  async function render(data: string) {
+  async function render(data) {
     let canvasContainer = document.getElementById('pdf');
     if (!canvasContainer) {
       return;
     }
 
     canvasContainer.textContent = '';
+
+    if (pdfData == '' || pdfData == null) {
+      return;
+    }
 
     var options = { scale: 1 };
 
@@ -44,9 +48,9 @@
 </script>
 
 <style>
-
 </style>
 
 <main>
+  {#if pdfData == null}error{/if}
   <div id="pdf" />
 </main>

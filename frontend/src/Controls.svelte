@@ -1,9 +1,9 @@
-<script lang="ts">
-  export let pdfFiles: File[] = [];
+<script>
+  export let pdfFiles = [];
 
-  let fileNames: string[] = [];
+  let fileNames = [];
 
-  function onDrop(e: DragEvent) {
+  function onDrop(e) {
     e.preventDefault();
 
     for (var i = 0; i < e.dataTransfer.files.length; i++) {
@@ -15,13 +15,13 @@
     return false;
   }
 
-  function onDragEnter(e: DragEvent) {
+  function onDragEnter(e) {
     e.dataTransfer.dropEffect = 'move';
     e.preventDefault();
     return false;
   }
 
-  function onDragOver(e: DragEvent) {
+  function onDragOver(e) {
     e.dataTransfer.dropEffect = 'move';
     e.preventDefault();
     return false;
@@ -29,15 +29,12 @@
 </script>
 
 <style>
-  main {
-  }
   .dropzone {
     height: 293px;
     background: #181719;
     overflow: auto;
     margin: 10px;
     border-radius: 5px;
-    
   }
   .items {
     margin: 5px;
@@ -50,12 +47,12 @@
     z-index: 999999;
     position: relative;
   }
-  .controls{
-    height:50px;
-    width:100%;
+  .controls {
+    height: 50px;
+    width: 100%;
     background: #181719;
   }
-  .dropzoneText{
+  .dropzoneText {
     position: absolute;
     max-width: 100%;
     height: auto;
@@ -64,19 +61,18 @@
     left: 50%;
     color: white;
     font-size: 30px;
-    font-family:sans-serif;
+    font-family: sans-serif;
   }
 </style>
 
 <main>
-  <div class="controls"></div>
+  <div class="controls" />
 
   <div
     class="dropzone"
     on:drop={onDrop}
     on:dragenter={onDragEnter}
     on:dragover={onDragOver}>
-
     <div class="dropzoneText">DROP IT LIKE IT'S HOT!</div>
 
     <div class="itemsUL">
@@ -84,6 +80,5 @@
         <li class="items">{i} {fileName}</li>
       {/each}
     </div>
-
   </div>
 </main>
